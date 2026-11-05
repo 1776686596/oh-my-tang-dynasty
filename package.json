@@ -1,0 +1,70 @@
+{
+  "name": "oh-my-tang-dynasty",
+  "version": "0.2.0",
+  "description": "三省六部制 · Tang Dynasty Multi-Agent Orchestration Plugin for OpenCode",
+  "type": "module",
+  "main": "dist/plugin.js",
+  "module": "dist/plugin.js",
+  "scripts": {
+    "build": "bun build ./src/index.ts ./src/plugin.ts --outdir ./dist --target node",
+    "ci": "bun run typecheck && bun test && bun run build",
+    "dev": "bun build ./src/index.ts ./src/plugin.ts --outdir ./dist --target node --watch",
+    "prepack": "bun run build",
+    "prepublishOnly": "bun run ci",
+    "test": "bun test",
+    "typecheck": "bun x tsc --noEmit --skipLibCheck --target es2022 --module esnext --moduleResolution bundler --types bun-types,node src/config.ts src/index.ts src/orchestrator.ts src/plugin.test.ts src/plugin.ts src/runtime.ts src/types.ts src/agents/departments.ts src/agents/ministries.ts"
+  },
+  "exports": {
+    ".": {
+      "bun": "./src/plugin.ts",
+      "import": "./dist/plugin.js",
+      "default": "./dist/plugin.js"
+    },
+    "./lib": {
+      "bun": "./src/index.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "README_CN.md",
+    "README_EN.md",
+    "SECURITY.md",
+    "dist",
+    "src/*.ts",
+    "src/agents/*.ts",
+    "!src/*.test.ts",
+    "!src/test-fixtures"
+  ],
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.2.21",
+    "@opencode-ai/sdk": "^1.2.21",
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "bun-types": "latest",
+    "typescript": "^5.8.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1776686596/oh-my-tang-dynasty.git"
+  },
+  "bugs": {
+    "url": "https://github.com/1776686596/oh-my-tang-dynasty/issues"
+  },
+  "homepage": "https://github.com/1776686596/oh-my-tang-dynasty#readme",
+  "keywords": [
+    "opencode",
+    "plugin",
+    "multi-agent",
+    "orchestration",
+    "tang-dynasty",
+    "三省六部制"
+  ]
+}
